@@ -1,11 +1,7 @@
-# TODO: define the 'EXPECTED_BAKE_TIME' constant
-# TODO: consider defining the 'PREPARATION_TIME' constant 
-PREPARATION_TIME = 10
-#       equal to the time it takes to prepare a single layer
+PREPARATION_TIME = 2
+EXPECTED_BAKE_TIME =  40
 
-
-# TODO: define the 'bake_time_remaining()' function
-def bake_time_remaining():
+def bake_time_remaining(elapsed_bake_time):
     """Calculate the bake time remaining.
 
     :param elapsed_bake_time: int baking time already elapsed.
@@ -15,14 +11,34 @@ def bake_time_remaining():
     an argument and returns how many minutes the lasagna still needs to bake
     based on the `EXPECTED_BAKE_TIME`.
     """
+    time_remaining = EXPECTED_BAKE_TIME - elapsed_bake_time
+    return time_remaining
 
-    pass
+def preparation_time_in_minutes(layers):
+    """Calculate the preparation time in minutes.
 
-# TODO: define the 'preparation_time_in_minutes()' function
-#       and consider using 'PREPARATION_TIME' here
-def preparation_time_in_minutes():
-    pass
+    :param layers: int of layers you want to add.
+    :return: int how many minutes you would spend making them.
 
-# TODO: define the 'elapsed_time_in_minutes()' function
-def elapsed_time_in_minutes():
-    pass
+    Function that takes the of layers you want to add to the lasagna
+    an argument and returns how many minutes you would spend making them
+    based on the `PREPARATION_TIME`.
+    """
+    preparation_time = PREPARATION_TIME * layers
+    return preparation_time
+
+def elapsed_time_in_minutes(layers, elapsed_bake_time):
+    """Calculate the elapsed time in minutes.
+
+    :param layers: int of layers you want to add.
+    :param elapsed_bake_time: int baking time already elapsed.
+    :return: int  time elapsed derived in minutes.
+
+    Function that takes the actual minutes the lasagna has been in the oven as
+    and the of layers you want to add to the lasagna an argument and returns
+    how many minutes the lasagna still needs to bake based on the
+    `PREPARATION_TIME`.
+    """
+    layers_time = PREPARATION_TIME * layers
+    elapsed_time = layers_time + elapsed_bake_time
+    return elapsed_time
